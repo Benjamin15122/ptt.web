@@ -1,10 +1,8 @@
 import {Component} from'react'
 import CanvasJSReact from '../lib/canvasjs.react'
-import {pr_curve} from '../lib/out'
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 class LineChart extends Component {
 	render() {
-    console.log(pr_curve)
 		const options = {
 			animationEnabled: true,
 			title:{
@@ -59,7 +57,7 @@ class LineChart extends Component {
 		}
 		return (
       <div style={{width: 500}}>
-			<CanvasJSChart options = {pr_curve}/>
+			<CanvasJSChart options = {options}/>
       </div>
 		);
 	}

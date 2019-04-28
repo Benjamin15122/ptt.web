@@ -2,7 +2,8 @@ import request from '../utils/request';
 export default{
     namespace: "git",
     state: {
-        commits: ["nothing","nothing","nothing"]
+        commits: ["nothing","nothing","nothing"],
+        diffText: ""
     },
     reducers: {
         updateCommits(state,{payload}){
@@ -15,6 +16,12 @@ export default{
             return {
                 ...state,
                 content: payload
+            }
+        },
+        updateDiff(state, {payload}){
+            return {
+                ...state,
+                diffText: payload
             }
         }
     },
@@ -34,6 +41,11 @@ export default{
             const {content} = yield call(request, url)
             const data = JSON.parse(atob(content))
             yield put({type: 'updateContent',payload: data})
+        },
+        *fetchDiff({payload},{call,put}){
+            const url = "/server/?commit1="+payload.commit1+"&&commit2="+payload.commit2
+            const response = yield call(request,url)
+            yield put({type: 'updateDiff',payload: response.diff})
         }
     }
 }

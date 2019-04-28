@@ -2,6 +2,8 @@
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
+  base: '/ptt.web/',
+  publicPath: "/ptt.web/",
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
@@ -26,6 +28,24 @@ export default {
     '/repos':{
       target:"https://api.github.com/",
       changeOrigin: true
+    },
+    '/server':{
+      target: "http://localhost:9090/",
+      changeOrigin: true
     }
-  }
+  },
+  routes: [{
+    path: '/',
+    component: '../layouts',
+    routes: [{
+      path: '/',
+      component: './index'
+    },{
+      path: '/chart',
+      component: './chart'
+    },{
+      path: '/diff',
+      component: './diff'
+    }]
+  }]
 }

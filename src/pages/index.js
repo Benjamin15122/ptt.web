@@ -2,20 +2,33 @@ import React,{Component} from 'react'
 import {connect} from 'dva'
 import {Input,Row,Timeline} from 'antd'
 import {
-  G2,
+  // G2,
   Chart,
   Geom,
   Axis,
   Tooltip,
-  Coord,
-  Label,
-  Legend,
-  View,
-  Guide,
-  Shape,
-  Facet,
-  Util
+  // Coord,
+  // Label,
+  // Legend,
+  // View,
+  // Guide,
+  // Shape,
+  // Facet,
+  // Util
 } from "bizcharts";
+
+function getCols(graph){
+  debugger
+  var cols = {}
+  cols[graph.scalex] = {
+    range: [0,1]
+  }
+  cols[graph.scaley] = {
+    min: 0,
+  }
+  console.log(cols)
+  return cols
+}
 
 const Search = Input.Search;
 @connect(({git})=>({git: git}))
@@ -26,14 +39,9 @@ class LocalPttViewer extends Component{
       debugger
       console.log(content.graphlist[0])
     }
-    const cols = {
-      value: {
-        min: 0
-      },
-      year: {
-        range: [0, 1]
-      }
-    };
+    const cols = content===undefined?null:getCols(content.graphlist[0])
+    const position = content===undefined?null:`${content.graphlist[0].scalex}*${content.graphlist[0].scaley}`
+    console.log(position)
     return (
       <div>
         <Row>
@@ -67,10 +75,10 @@ class LocalPttViewer extends Component{
                 type: "y"
               }}
             />
-            <Geom type="line" position={`${content.graphlist[0].scalex}*${content.graphlist[0].scaley}`} size={2} />
+            <Geom type="line" position={position} size={2} />
             <Geom
               type="point"
-              position={`${content.graphlist[0].scalex}*${content.graphlist[0].scaley}`}
+              position={position}
               size={4}
               shape={"circle"}
               style={{

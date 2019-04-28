@@ -43,7 +43,7 @@ export default{
             yield put({type: 'updateContent',payload: data})
         },
         *fetchDiff({payload},{call,put}){
-            const url = "/server/?commit1="+payload.commit1+"&&commit2="+payload.commit2
+            const url = "/apis/diff_text?commit1="+payload.commit1+"&commit2="+payload.commit2
             const response = yield call(request,url)
             yield put({type: 'updateDiff',payload: response.diff})
         }

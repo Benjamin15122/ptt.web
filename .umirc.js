@@ -29,7 +29,7 @@ export default {
       target:"https://api.github.com/",
       changeOrigin: true
     },
-    '/server':{
+    '/apis':{
       target: "http://localhost:9090/",
       changeOrigin: true
     }

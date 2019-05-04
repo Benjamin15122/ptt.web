@@ -1,28 +1,30 @@
-import {Component} from'react'
+import { Component } from 'react'
 import CanvasJSReact from '../lib/canvasjs.react'
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 class LineChart extends Component {
 	render() {
 		const options = {
 			animationEnabled: true,
-			title:{
+			title: {
 				text: "PR-Curve"
 			},
 			axisX: {
-        valueFormatString: "",
-        title: "recall"
+				valueFormatString: "",
+				title: "recall"
 			},
 			axisY: {
 				title: "precision",
 				prefix: "",
 			},
 			data: [{
+				name:"a",
 				type: "spline",
+				showInLegend: true,
 				dataPoints: [
-          { x: 0.0, y: 1.00 },
-          { x: 0.1, y: 0.95 },
-          { x: 0.15, y: 0.94},
-          { x: 0.16, y: 0.94},
+					{ x: 0.0, y: 1.00 },
+					{ x: 0.1, y: 0.95 },
+					{ x: 0.15, y: 0.94 },
+					{ x: 0.16, y: 0.94 },
 					{ x: 0.2, y: 0.93 },
 					{ x: 0.3, y: 0.89 },
 					{ x: 0.4, y: 0.85 },
@@ -33,13 +35,15 @@ class LineChart extends Component {
 					{ x: 0.9, y: 0.35 },
 					{ x: 1.0, y: 0.00 }
 				]
-			},{
-        type: "spline",
+			}, {
+				name: "b",
+				showInLegend: true,
+				type: "spline",
 				dataPoints: [
-          { x: 0.0, y: 1.00 },
-          { x: 0.1, y: 0.99 },
-          { x: 0.15, y: 0.98},
-          { x: 0.16, y: 0.98},
+					{ x: 0.0, y: 1.00 },
+					{ x: 0.1, y: 0.99 },
+					{ x: 0.15, y: 0.98 },
+					{ x: 0.16, y: 0.98 },
 					{ x: 0.2, y: 0.95 },
 					{ x: 0.3, y: 0.93 },
 					{ x: 0.4, y: 0.92 },
@@ -47,18 +51,18 @@ class LineChart extends Component {
 					{ x: 0.6, y: 0.82 },
 					{ x: 0.7, y: 0.75 },
 					{ x: 0.8, y: 0.68 },
-          { x: 0.9, y: 0.60 },
-          { x: 0.92, y: 0.56},
-          { x: 0.94, y: 0.50},
-          { x: 0.96, y: 0.39},
+					{ x: 0.9, y: 0.60 },
+					{ x: 0.92, y: 0.56 },
+					{ x: 0.94, y: 0.50 },
+					{ x: 0.96, y: 0.39 },
 					{ x: 1.0, y: 0.00 }
 				]
 			}]
 		}
 		return (
-      <div style={{width: 500}}>
-			<CanvasJSChart options = {options}/>
-      </div>
+			<div style={{ width: 500 }}>
+				<CanvasJSChart options={options} />
+			</div>
 		);
 	}
 }
